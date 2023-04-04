@@ -33,7 +33,9 @@ public:
     //Sobre carga CIN 
     friend istream& operator>>(istream&& in, Text& text); //no lleva const, por que?
 
-    
+    //sobre carga de ^
+    Text& operator^(const Text& other);
+    Text& operator^=(const Text& other);
 
 private:
     char* _text = nullptr; //iniciacion in class. Como es puntero = nullptr

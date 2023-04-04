@@ -44,6 +44,8 @@ std::cout << "Texto 1: " << text_1 << std::endl;
 std::cout << "Texto 2: " << text_2 << std::endl;
 std::cout << "Texto 3: " << text_3 << std::endl;
 std::cout << "Texto 4: " << text_4 << std::endl;
+
+
 Use Case #4: Crear dos objetos Text, leer el contenido desde el teclado y realizar un intercambio de valores utilizando el algoritmo std::swap().
 
 Text text_1;

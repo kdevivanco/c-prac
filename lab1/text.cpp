@@ -1,8 +1,8 @@
 #include <iostream>
 #include <cstring>
-#include<string>
-#include <typeinfo>
-#include <algorithm>    // std::swap
+#include <string>
+//#include <typeinfo>
+//#include <algorithm>    // std::swap
 
 #include "text.h"
 
@@ -23,6 +23,7 @@ Text::Text(const Text& other){
     _sz = other._sz;
     _text = new char[_sz +1];
     strcpy(_text,other._text);
+    this->setText(_text, _sz);
 }
 
 //asignacion copia: 
@@ -38,6 +39,22 @@ Text &Text::operator = (const Text& other){
     return *this;
 }
 
+Text &Text::operator^(const Text& other){
+    Text text3;
+
+    // Use strcat() to concat two specified string
+    strcat(this->_text, other._text);
+
+    // Copy the string to string to be return
+    strcpy(text3._text, this->_text);
+
+
+    // return the object
+    return text3;
+
+}
+
+
 
 ostream& operator<<(ostream& out, const Text& text) {
     out << text._text << endl;
@@ -51,10 +68,8 @@ void Text::setText(const char* text, int size) {
         strcpy(_text, text);
     }
 
-
-
 istream &operator>>(istream& in, Text& text) {
-        char buffer[text.getSize()];
+    char buffer[text.getSize()];
     char c;
     int i = 0;
     while (in.get(c)) {
@@ -62,34 +77,18 @@ istream &operator>>(istream& in, Text& text) {
         buffer[i++] = c;
     }
     buffer[i] = '\0';
-    // use the public getter method to access the size and text values
+    // llamamos a los metodos publicos para poder acceder a las variables privadas y crear nuevo size y text
     int size = text.getSize();
     char* str = text.getText();
+    // destruye para poder ocupar ese nuevo sitio en memoria
     delete[] str;
+    //creas espacio en memoria
     str = new char[size+1];
+    //copias al nuevo objeto
     strcpy(str, buffer);
-    // use the public setter method to set the new values
+    //llamamos al metodo publico setText y le pasamos los datos obtenidos
     text.setText(str, size);
     return in;
-
-    // char buffer[text.getSize()];
-    // char c;
-    // int i = 0;
-    // while (in.get(c)) {
-    //     if (c == '\n' || i == text.getSize() - 1) break;
-    //     buffer[i++] = c;
-    // }
-    // buffer[i] = '\0';
-    // text._sz = strlen(buffer);
-    // delete[] text._text;
-    // text._text = new char[text._sz+1];
-    // strcpy(text._text, buffer);
-    // return in;
-
-    // string input;
-    // getline(in, input);
-    // text = input;
-    // return in;
 }
 
 int main(){
@@ -97,15 +96,24 @@ int main(){
     cout << t1 << endl;
     
 
-    Text t2;
-    t2 = t1;
-    cout<<t1;
+    Text t2 = t1;
+    cout<<t2;
     // return 0;
+
+
+    Text t3 = Text(t2);
+    cout << t3;
+    // Text text_3;
+    // text_3 = t1 ^ t2;
+    // cout << text_3;
+
 
     Text text_2;
     cout << "ingresa tu texto: ";
     std::cin >> text_2;
     //std::cout << typeid(text_2).name() << '\n';
     cout << text_2 << endl;
+
+    
 }
 
