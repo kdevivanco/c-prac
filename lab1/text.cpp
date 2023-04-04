@@ -40,21 +40,12 @@ Text &Text::operator = (const Text& other){
 }
 
 Text &Text::operator^(const Text& other){
-    Text text3;
-
     // Use strcat() to concat two specified string
     strcat(this->_text, other._text);
 
-    // Copy the string to string to be return
-    strcpy(text3._text, this->_text);
-
-
-    // return the object
-    return text3;
+    return *this;
 
 }
-
-
 
 ostream& operator<<(ostream& out, const Text& text) {
     out << text._text << endl;
@@ -103,9 +94,10 @@ int main(){
 
     Text t3 = Text(t2);
     cout << t3;
-    // Text text_3;
-    // text_3 = t1 ^ t2;
-    // cout << text_3;
+
+    Text text_3;
+    t1 ^ t2;
+    cout << t1;
 
 
     Text text_2;
