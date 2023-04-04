@@ -1,7 +1,11 @@
 #include <iostream>
 #include <cstring>
 #include<string>
+#include <typeinfo>
+#include <algorithm>    // std::swap
+
 #include "text.h"
+
 using namespace std;
 //construct
 // Constructor por parametros
@@ -34,12 +38,13 @@ Text &Text::operator = (const Text& other){
     return *this;
 }
 
+
 ostream& operator<<(ostream& out, const Text& text) {
     out << text._text << endl;
     return out;
 }
 
-istream &operator>>(istream &in, Text &text) {
+istream &operator>>(istream& in, Text& text) {
     char buffer[text.getSize()];
     char c;
     int i = 0;
@@ -48,9 +53,16 @@ istream &operator>>(istream &in, Text &text) {
         buffer[i++] = c;
     }
     buffer[i] = '\0';
-    text = buffer;
-    in >> buffer;
+    text._sz = strlen(buffer);
+    delete[] text._text;
+    text._text = new char[text._sz+1];
+    strcpy(text._text, buffer);
     return in;
+
+    // string input;
+    // getline(in, input);
+    // text = input;
+    // return in;
 }
 
 int main(){
@@ -66,6 +78,7 @@ int main(){
     Text text_2;
     cout << "ingresa tu texto: ";
     std::cin >> text_2;
-    std::cout << text_2 << std::endl;
+    //std::cout << typeid(text_2).name() << '\n';
+    cout << text_2 << endl;
 }
 
