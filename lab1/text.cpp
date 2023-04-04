@@ -43,9 +43,18 @@ ostream& operator<<(ostream& out, const Text& text) {
     out << text._text << endl;
     return out;
 }
+//Set text:
+void Text::setText(const char* text, int size) {
+        _sz = size;
+        delete[] _text;
+        _text = new char[_sz+1];
+        strcpy(_text, text);
+    }
+
+
 
 istream &operator>>(istream& in, Text& text) {
-    char buffer[text.getSize()];
+        char buffer[text.getSize()];
     char c;
     int i = 0;
     while (in.get(c)) {
@@ -53,11 +62,29 @@ istream &operator>>(istream& in, Text& text) {
         buffer[i++] = c;
     }
     buffer[i] = '\0';
-    text._sz = strlen(buffer);
-    delete[] text._text;
-    text._text = new char[text._sz+1];
-    strcpy(text._text, buffer);
+    // use the public getter method to access the size and text values
+    int size = text.getSize();
+    char* str = text.getText();
+    delete[] str;
+    str = new char[size+1];
+    strcpy(str, buffer);
+    // use the public setter method to set the new values
+    text.setText(str, size);
     return in;
+
+    // char buffer[text.getSize()];
+    // char c;
+    // int i = 0;
+    // while (in.get(c)) {
+    //     if (c == '\n' || i == text.getSize() - 1) break;
+    //     buffer[i++] = c;
+    // }
+    // buffer[i] = '\0';
+    // text._sz = strlen(buffer);
+    // delete[] text._text;
+    // text._text = new char[text._sz+1];
+    // strcpy(text._text, buffer);
+    // return in;
 
     // string input;
     // getline(in, input);

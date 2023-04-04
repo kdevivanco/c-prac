@@ -16,12 +16,9 @@ public:
     //Asignacion copia: 
     Text& operator= (const Text& other);
 
-    void Text::setText(const char* text, int size) {
-        _sz = size;
-        delete[] _text;
-        _text = new char[_sz+1];
-        strcpy(_text, text);
-    }
+    //Set text
+    void setText(const char* text, int size);
+
 
     int getSize() const { return _sz; }
     char* getText() const {return _text; }
