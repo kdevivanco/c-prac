@@ -1,4 +1,5 @@
-
+#include<iostream>
+using namespace std;
 //Ejemplo objetos constantes
 class Point{
 	int x = 0;
@@ -22,7 +23,7 @@ void ejemplo_objetos_constantes(){
 
     cout << p1.get_x() << " " << p1.get_y() << endl;
 
-    const Point p1(100,200);
+    const Point p2(100,200);
     cout << p2.get_x() << " " << p2.get_y() << endl;
 }
 
