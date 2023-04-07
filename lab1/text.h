@@ -15,6 +15,7 @@ public:
     Text(const Text& other);
     //Asignacion copia: 
     Text& operator= (const Text& other);
+    Text& operator^=(const Text& other);
 
     //Set text
     void setText(const char* text, int size);

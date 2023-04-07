@@ -41,9 +41,19 @@ Text &Text::operator = (const Text& other){
 
 Text &Text::operator^(const Text& other){
     // Use strcat() to concat two specified string
-    strcat(this->_text, other._text);
+    
+    Text text_temp(this->_text);
 
-    return *this;
+    strcat(text_temp._text,other._text);
+
+    return text_temp;
+    
+    // strcat(this->_text, other._text);
+    
+
+    // _sz = strlen(this->_text);
+    // this->_text = new char[_sz+1];
+    // strcpy(_text,text);
 
 }
 
@@ -83,29 +93,40 @@ istream &operator>>(istream& in, Text& text) {
 }
 
 int main(){
+    cout<<"Constructor basico:\n";
     Text t1("Hello, world!");
     cout << t1 << endl;
     
+    cout<<"Constructor copia:\n";
+    Text t3 = Text(t1);
+    cout << t3 <<endl;
 
+    cout<<"Asignacion copia:\n";
     Text t2 = t1;
-    cout<<t2;
+    cout<<t2 <<endl;
     // return 0;
 
-
-    Text t3 = Text(t2);
-    cout << t3;
-
+    cout<<"Concatenacion uno:\n";
     Text text_3;
-    t1 ^ t2;
+    text_3= t1^t2;
+    cout << text_3 << endl;
+
+    cout<<"Text 1 deberia ser Hello, world!\n:";
     cout << t1;
+    // t1 ^ t2;
+    // cout << t1;
 
 
-    Text text_2;
-    cout << "ingresa tu texto: ";
-    std::cin >> text_2;
-    //std::cout << typeid(text_2).name() << '\n';
-    cout << text_2 << endl;
+    // Text text_2;
+    // cout << "ingresa tu texto: ";
+    // std::cin >> text_2;
+    // //std::cout << typeid(text_2).name() << '\n';
+    // cout << text_2 << endl;
 
     
 }
 
+
+
+
+ 
