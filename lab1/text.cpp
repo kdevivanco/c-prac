@@ -1,13 +1,10 @@
 #include <iostream>
 #include <cstring>
 #include <string>
-//#include <typeinfo>
-//#include <algorithm>    // std::swap
 
 #include "text.h"
 
 using namespace std;
-//construct
 // Constructor por parametros
 Text::Text(const char* text) {
     _sz = strlen(text);
@@ -41,15 +38,6 @@ Text& Text::operator=(const std::string& text) {
 
 //asignacion copia: 
 Text &Text::operator= (const Text& other){
-    // if(&other == this){
-    //     return *this;
-    // }
-
-    // _sz = other._sz;
-    // delete[]_text;
-    // char* _text = new char[_sz+1];
-    // strcpy(_text,other._text);
-    // return *this;
         if (&other == this) {
         return *this;
     }
@@ -61,6 +49,7 @@ Text &Text::operator= (const Text& other){
     return *this;
 }
 
+//Sobre carga del operador ^
 Text Text::operator^(const Text& other){
     Text result;
     result._sz = _sz + other._sz;
@@ -70,11 +59,13 @@ Text Text::operator^(const Text& other){
     return result;
 }
 
+//Sobre carga del operador ^=
 Text &Text::operator ^=(const Text& other){
     strcat(this->_text,other._text);
     return *this;
 }
 
+//Sobre carga de getline
 istream& getline(istream& in, Text& text) {
     char buffer[text.getSize()];
     char c;
@@ -84,22 +75,22 @@ istream& getline(istream& in, Text& text) {
         buffer[i++] = c;
     }
     buffer[i] = '\0';
-    // use the public getter method to access the size and text values
     int size = text.getSize();
     char *str = text.getText();
     delete[] str;
     str = new char[size + 1];
     strcpy(str, buffer);
-    // use the public setter method to set the new values
     text.setText(str, size);
     return in;
 }
 
+//Sobre carga cout
 ostream& operator<<(ostream& out, const Text& text) {
     out << text._text << endl;
     return out;
 }
-//Set text:
+
+//Set text func
 void Text::setText(const char* text, int size) {
         _sz = size;
         delete[] _text;
@@ -107,6 +98,7 @@ void Text::setText(const char* text, int size) {
         strcpy(_text, text);
     }
 
+//Sobre carga cin >>
 istream &operator>>(istream& in, Text& text) {
     char buffer[text.getSize()];
     char c;
@@ -130,22 +122,4 @@ istream &operator>>(istream& in, Text& text) {
     return in;
 }
 
-// int main(){
-//     Text text_1;
-//     Text text_2;
-//     Text text_3;
-//     Text text_4;
 
-//     getline(cin, text_1);
-//     getline(cin, text_2);
-
-//     text_3 = text_1 ^ text_2;
-//     text_4 = text_1;
-//     text_4 ^= "/CUARTO";
-
-//     std::cout << "Texto 1: " << text_1 << std::endl;
-//     std::cout << "Texto 2: " << text_2 << std::endl;
-//     std::cout << "Texto 3: " << text_3 << std::endl;
-//     std::cout << "Texto 4: " << text_4 << std::endl;
-    
-// }

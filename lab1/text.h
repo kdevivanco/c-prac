@@ -23,16 +23,15 @@ public:
     //Set text
     void setText(const char* text, int size);
 
-
+    //Metodos getsize gettext
     int getSize() const { return _sz; }
     char* getText() const {return _text; }
     
-
-    //Asignacion copia para string: 
-    // Text& operator=(const string& text);
-
+    //Sobrecarga de operadores concat
     Text operator^(const Text& other);
     Text& operator^=(const Text& other);
+
+    //Operador string
     operator string() const{
         return std::string(_text);
     };
@@ -45,14 +44,14 @@ public:
     friend istream& getline(istream& in, Text& text);
     
 
+//Variables privadas
 private:
     char* _text = nullptr; //iniciacion in class. Como es puntero = nullptr
     int _sz = 0; //iniciacion in class (porque se le asigna un valor)
-    // void setString(const char* str) {
-    //     _sz = strlen(str);
-    // }
+   
 };
-//ostream operator<<(ostream& out, const Text& text);
+
+
 istream &operator>> (istream &in, Text& text);
 istream& getline(istream& in, Text& text);
 #endif
