@@ -13,9 +13,12 @@ public:
     Text(const char* text);
     //Constructor copia 
     Text(const Text& other);
+    //Constructor string:
+    Text(const std::string& str);
     //Asignacion copia: 
     Text& operator= (const Text& other);
-    Text& operator^=(const Text& other);
+    Text& operator=(const std::string& text);
+    //Text& operator^=(const Text& other);
 
     //Set text
     void setText(const char* text, int size);
@@ -28,15 +31,19 @@ public:
     //Asignacion copia para string: 
     // Text& operator=(const string& text);
 
+    Text& operator^(const Text& other);
+    Text& operator ^=(const Text& other);
+    operator string() const{
+        return std::string(_text);
+    };
+
     //Sobre carga COUT
     friend ostream& operator<<(ostream& out, const Text& text);
 
     //Sobre carga CIN 
     friend istream& operator>>(istream&& in, Text& text); //no lleva const, por que?
-
-    //sobre carga de ^
-    Text& operator^(const Text& other);
-    Text& operator^=(const Text& other);
+    friend istream& getline(istream& in, Text& text);
+    
 
 private:
     char* _text = nullptr; //iniciacion in class. Como es puntero = nullptr
@@ -45,6 +52,7 @@ private:
     //     _sz = strlen(str);
     // }
 };
-istream &operator>> (istream &in, Text &text);
-
+//ostream operator<<(ostream& out, const Text& text);
+istream &operator>> (istream &in, Text& text);
+istream& getline(istream& in, Text& text);
 #endif
