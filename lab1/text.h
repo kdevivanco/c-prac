@@ -31,8 +31,8 @@ public:
     //Asignacion copia para string: 
     // Text& operator=(const string& text);
 
-    Text& operator^(const Text& other);
-    Text& operator ^=(const Text& other);
+    Text operator^(const Text& other);
+    Text& operator^=(const Text& other);
     operator string() const{
         return std::string(_text);
     };

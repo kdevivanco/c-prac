@@ -41,20 +41,33 @@ Text& Text::operator=(const std::string& text) {
 
 //asignacion copia: 
 Text &Text::operator= (const Text& other){
-    if(&other == this){
+    // if(&other == this){
+    //     return *this;
+    // }
+
+    // _sz = other._sz;
+    // delete[]_text;
+    // char* _text = new char[_sz+1];
+    // strcpy(_text,other._text);
+    // return *this;
+        if (&other == this) {
         return *this;
     }
 
     _sz = other._sz;
-    delete[]_text;
-    char* _text = new char[_sz+1];
-    strcpy(_text,other._text);
+    delete[] _text;
+    _text = new char[_sz + 1];
+    strcpy(_text, other._text);
     return *this;
 }
 
-Text &Text::operator^(const Text& other) {
-    strcat(this->_text,other._text);
-    return *this;
+Text Text::operator^(const Text& other){
+    Text result;
+    result._sz = _sz + other._sz;
+    result._text = new char[result._sz + 1];
+    strcpy(result._text, _text);
+    strcat(result._text, other._text);
+    return result;
 }
 
 Text &Text::operator ^=(const Text& other){
@@ -119,66 +132,20 @@ istream &operator>>(istream& in, Text& text) {
 
 // int main(){
 //     Text text_1;
-//     std::string text_2;
+//     Text text_2;
 //     Text text_3;
-//     std::string text_4;
-//     Text text_5 = string("Hola std::string");   // Constructor x parámetro std::string
+//     Text text_4;
 
-//     getline(std::cin, text_1);
-//     getline(std::cin, text_2);
-//     text_4 = text_1;                            // Sobrecarga al operador conversión
-//     text_3 = text_2;                            // Sobrecarga al operador =
+//     getline(cin, text_1);
+//     getline(cin, text_2);
 
-//     std::cout << text_1 << endl;
-//     std::cout << text_2 << endl;
-//     std::cout << text_3 << endl;
-//     std::cout << text_4 << endl;
-//     std::cout << text_5 << endl;
-//     // cout<<"Constructor basico:\n";
-//     // Text t1("Hello, world!");
-//     // cout << t1 << endl;
-    
-//     // cout<<"Constructor copia:\n";
-//     // Text t3 = Text(t1);
-//     // cout << t3 <<endl;
+//     text_3 = text_1 ^ text_2;
+//     text_4 = text_1;
+//     text_4 ^= "/CUARTO";
 
-//     // cout<<"Asignacion copia:\n";
-//     // Text t2 = t1;
-//     // cout<<t2 <<endl;
-//     // // return 0;
-
-//     // cout<< "Potencia igual\n ";
-//     // Text t4("Hola como estas");
-//     // t4 ^=t1;
-
-//     // cout<< t4 << endl;
-
-//     // Text t5;
-//     // getline(cin,t5);
-//     // cout<<"Getline: \n";
-//     // cout << t5 << endl;
-
-//     // cout<< "Potencia igual con string\n";
-
-//     // t5 ^= "string";
-//     // cout << t5 << endl;
-
-//     // cout<<"Concatenacion uno:\n";
-//     // Text text_3 = t1 ^ t1;
-//     // cout << text_3 << endl;
-
-//     // cout<<"Text 1 deberia ser Hello, world!\n:";
-//     // cout << t1;
-
-//     // Text text_1;
-//     // Text text_2;
-
-//     // getline(std::cin, text_1);
-//     // getline(std::cin, text_2);
-
-//     // std::swap(text_1, text_2);
-
-//     // std::cout << text_1 << endl;
-//     // std::cout << text_2 << endl;
+//     std::cout << "Texto 1: " << text_1 << std::endl;
+//     std::cout << "Texto 2: " << text_2 << std::endl;
+//     std::cout << "Texto 3: " << text_3 << std::endl;
+//     std::cout << "Texto 4: " << text_4 << std::endl;
     
 // }
