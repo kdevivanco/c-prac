@@ -36,6 +36,12 @@ public:
         return std::string(_text);
     };
 
+    
+    void swap(Text& other) {
+        std::swap(_sz, other._sz);
+        std::swap(_text, other._text);
+    }
+
     //Sobre carga COUT
     friend ostream& operator<<(ostream& out, const Text& text);
 

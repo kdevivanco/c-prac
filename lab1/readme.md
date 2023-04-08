@@ -26,6 +26,7 @@ Use Case #2: Crear un objeto Text leer del teclado e imprimirlo
 Text text_1;
 std::cin >> text_1;
 std::cout << text_1 << std::endl;
+
 Use Case #3: Crear cuatro objetos Text, leer el contenido de dos del teclado, concatenarlos y asignarlos al tercer objeto, al cuarto asignarle el valor del primero y agregarle al final el texto: "/CUARTO"
 
 Text text_1;
@@ -58,9 +59,11 @@ std::swap(text_1, text_2);
 
 std::cout << text_1 << endl;
 std::cout << text_2 << endl;
+
+
 Use Case #5: Crear cuatro objetos: dos del tipo Text y dos del tipo std::string, leer el contenido desde el teclado de uno del tipo Text y otro del tipo std::string, copiar el contenido del primer objeto Text dentro del segundo objeto std::string y realizar de forma similar copiar el contenido del primer objeto std::string dentro del segundo objeto del tipo Text
 
-    Text text_1;
+Text text_1;
 std::string text_2;
 Text text_3;
 std::string text_4;

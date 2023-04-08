@@ -122,4 +122,17 @@ istream &operator>>(istream& in, Text& text) {
     return in;
 }
 
+// int main(){
+//     Text text_1;
+//     Text text_2;
 
+//     getline(std::cin, text_1);
+//     getline(std::cin, text_2);
+
+//     std::swap(text_1, text_2);
+
+//     std::cout << text_1 << endl;
+//     std::cout << text_2 << endl;
+
+
+// }
